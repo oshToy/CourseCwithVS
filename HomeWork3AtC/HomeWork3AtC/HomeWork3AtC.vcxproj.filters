@@ -24,12 +24,18 @@
     <ClCompile Include="Hotel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="encryption.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Hotel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="encryption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

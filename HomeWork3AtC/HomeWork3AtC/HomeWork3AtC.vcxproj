@@ -112,11 +112,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="encryption.c" />
     <ClCompile Include="Hotel.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Room.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="encryption.h" />
     <ClInclude Include="Hotel.h" />
     <ClInclude Include="Room.h" />
   </ItemGroup>

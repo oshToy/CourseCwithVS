@@ -2,11 +2,14 @@
 
 int main() {
 
+	char temp = -82;
+	bytesRightRoundMoveEncrypt(&temp, sizeof(char), 3);
+	bytesRightRoundMoveDecrypt(&temp, sizeof(char), 3);
 		Hotel hotel;
-		initHotel(&hotel);
-		if(hotel.numberOfRoomsPerFloor>2){//2e
-		checkIfSpecficRoomsHasFeature(Balcon, &(hotel.roomsMatrix[0][0]), &hotel.roomsMatrix[0][2], &hotel.roomsMatrix[0][3],NULL);
-		}
+		//initHotel(&hotel);
+		//if(hotel.numberOfRoomsPerFloor>2){//2e
+		//checkIfSpecficRoomsHasFeature(Balcon, &(hotel.roomsMatrix[0][0]), &hotel.roomsMatrix[0][2], &hotel.roomsMatrix[0][3],NULL);
+		//}
 		int choise = 0;
 		while (choise != -1) {
 			printf("press  '1' , to show hotel status\n");
@@ -25,7 +28,7 @@ int main() {
 				break;
 			}
 			case 3: {
-
+				
 				break;
 			}
 			case 4: {
