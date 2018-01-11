@@ -3,12 +3,12 @@
 
 void initRoom(Room * room)//1a
 {
-	char byteOfFeatures=0;
+	char byteOfFeatures = 0;
 	int answer = 0;
-	do{
-	printf("How many beds in the room ?\n");
-	scanf("%d", &room->numberOfBeds);
-} while (room->numberOfBeds < 1);
+	do {
+		printf("How many beds in the room ?\n");
+		scanf("%d", &room->numberOfBeds);
+	} while (room->numberOfBeds < 1);
 	printf("there is a pool view in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
 	if (answer == 1) {
@@ -18,7 +18,7 @@ void initRoom(Room * room)//1a
 	zeroOrOne(&answer);
 	if (answer == 1) {
 		byteOfFeatures = byteOfFeatures | Balcon;
-}
+	}
 	printf("there is a kettle in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
 	if (answer == 1) {
@@ -26,22 +26,22 @@ void initRoom(Room * room)//1a
 	}
 	printf("there is a Wifi in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1){
+	if (answer == 1) {
 		byteOfFeatures = byteOfFeatures | Wifi;
 	}
 	printf("there is a sofa in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1){
+	if (answer == 1) {
 		byteOfFeatures = byteOfFeatures | Sofa;
 	}
 	printf("there is a TV in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1){
+	if (answer == 1) {
 		byteOfFeatures = byteOfFeatures | TV;
 	}
 	printf("there is a Occupied in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1){
+	if (answer == 1) {
 		byteOfFeatures = byteOfFeatures | Occupied;
 	}
 	room->features = byteOfFeatures;
@@ -50,8 +50,8 @@ void initRoom(Room * room)//1a
 void toStringRoom(Room * room)//1b
 {
 	printf("the room has %d beds\n", room->numberOfBeds);
-	
-	printf("the room %s pool view \n", ((room->features&PoolView) == PoolView)? "has": "hasn't");
+
+	printf("the room %s pool view \n", ((room->features&PoolView) == PoolView) ? "has" : "hasn't");
 	printf("the room %s balcon\n", ((room->features&Balcon) == Balcon) ? "has" : "hasn't");
 	printf("the room %s kettle\n", ((room->features&Kettle) == Kettle) ? "has" : "hasn't");
 	printf("the room %s Wifi\n", ((room->features&Wifi) == Wifi) ? "has" : "hasn't");
@@ -62,17 +62,16 @@ void toStringRoom(Room * room)//1b
 void zeroOrOne(int* answer)
 {
 	int temp;
-	while(1){
-	scanf("%d", &temp);
-	if (temp == 0 || temp == 1) {
-		*answer = temp;
-		return;
-	}
-	printf("Please enter valid input, 0 or 1 !    ");
+	while (1) {
+		scanf("%d", &temp);
+		if (temp == 0 || temp == 1) {
+			*answer = temp;
+			return;
+		}
+		printf("Please enter valid input, 0 or 1 !    ");
 	}
 }
-int isRoomHasThisFeature(Room* room,features feature) {//2c
-	printf("%c", room->features);
+int isRoomHasThisFeature(Room* room, features feature) {//2c
 	return ((room->features&feature) == feature) ? 1 : 0;
 }
 void checkIfSpecficRoomsHasFeature(features feature, Room* room, ...) {//2e
@@ -80,8 +79,8 @@ void checkIfSpecficRoomsHasFeature(features feature, Room* room, ...) {//2e
 	Room* ptrRoom = room;
 	int noRooms = 1;
 	va_start(allRooms, room);
-	while (ptrRoom!=NULL) {
-		
+	while (ptrRoom != NULL) {
+
 		if (isRoomHasThisFeature(ptrRoom, feature)) {
 			noRooms = 0;
 			toStringRoom(ptrRoom);

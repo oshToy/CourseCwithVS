@@ -1,9 +1,11 @@
 #ifndef __ROOM_H
 #define __ROOM_H
 #include <stdio.h>
-typedef enum {PoolView=1,Balcon=2,
-Kettle=4,Wifi=8,Sofa=16,TV=32,
-Occupied=64}features;
+typedef enum {
+	PoolView = 1, Balcon = 2,
+	Kettle = 4, Wifi = 8, Sofa = 16, TV = 32,
+	Occupied = 64
+}features;
 
 typedef struct {
 	int numberOfBeds;
