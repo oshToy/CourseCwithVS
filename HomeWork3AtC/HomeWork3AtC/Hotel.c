@@ -95,3 +95,17 @@ void initHotel(Hotel* hotel) {//2a
 			printf("No room avaliable with this feature\n");
 		}
 	}
+	void encryptHotel(Hotel* hotel) {
+		for (int i = 0; i < hotel->numberOfFloors; i++)
+		{
+			for (int j = 0; j < hotel->numberOfRoomsPerFloor; j++)
+			{
+				encrypt(&hotel->roomsMatrix[i][j], sizeof(Room));
+			}
+		
+		}
+	
+	}
+	void saveptHotel(Hotel* hotel) {
+
+	}

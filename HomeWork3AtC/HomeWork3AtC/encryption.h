@@ -2,7 +2,7 @@
 #define FILE_NAME "encryption.txt"
 
 void encrypt(void* ptr, int size);
-void decrypt(void* ptr, int size,FILE *f);
+void decrypt(void* ptr, int size, char* fileName);
 void xorAllBytesEncryptDecrypt(void * ptr, int size);
 void swapBitsEncrypt(void * ptr, int size, int x);
 void swapBitsDecrypt(void * ptr, int size, int x);

@@ -3,8 +3,10 @@
 int main() {
 
 	char temp = -82;
-	bytesRightRoundMoveEncrypt(&temp, sizeof(char), 3);
-	bytesRightRoundMoveDecrypt(&temp, sizeof(char), 3);
+	encrypt(&temp, sizeof(char));
+
+	decrypt(&temp, sizeof(char), FILE_NAME);
+
 		Hotel hotel;
 		//initHotel(&hotel);
 		//if(hotel.numberOfRoomsPerFloor>2){//2e
@@ -50,6 +52,8 @@ int main() {
 
 			}
 		}
+		encryptHotel(&hotel);
+		saveHotel(&hotel);
 		freeHotel(&hotel);
 		printf("Good Bye!");
 		system("pause");

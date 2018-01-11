@@ -14,6 +14,8 @@ typedef struct {
 }Hotel;
 void initHotel(Hotel* hotel);
 void freeHotel(Hotel* hotel);
+void encryptHotel(Hotel* hotel);
+void saveptHotel(Hotel* hotel);
 void showHotelStatus(Hotel* hotel);
 void checkFreeRoomsByFeature(Hotel* hotel);
 void printFreeRoomThatContainFeature(Hotel* hotel, features feature);
