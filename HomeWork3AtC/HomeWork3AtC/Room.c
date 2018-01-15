@@ -1,47 +1,46 @@
 #include "Room.h"
-#include <stdarg.h>
 
 void initRoom(Room * room)//1a
 {
 	char byteOfFeatures = 0;
-	int answer = 0;
+	int answer = FALSE;
 	do {
 		printf("How many beds in the room ?\n");
 		scanf("%d", &room->numberOfBeds);
-	} while (room->numberOfBeds < 1);
+	} while (room->numberOfBeds < MIN_NUMBER_OF_BEDS);
 	printf("there is a pool view in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1) {
+	if (answer == TRUE) {
 		byteOfFeatures = byteOfFeatures | PoolView;
 	}
 	printf("there is a balcon in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1) {
+	if (answer == TRUE) {
 		byteOfFeatures = byteOfFeatures | Balcon;
 	}
 	printf("there is a kettle in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1) {
+	if (answer == TRUE) {
 		byteOfFeatures = byteOfFeatures | Kettle;
 	}
 	printf("there is a Wifi in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1) {
+	if (answer == TRUE) {
 		byteOfFeatures = byteOfFeatures | Wifi;
 	}
 	printf("there is a sofa in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1) {
+	if (answer == TRUE) {
 		byteOfFeatures = byteOfFeatures | Sofa;
 	}
 	printf("there is a TV in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1) {
+	if (answer == TRUE) {
 		byteOfFeatures = byteOfFeatures | TV;
 	}
 	printf("there is a Occupied in the room '0'-false '1'-true  ?\n");
 	zeroOrOne(&answer);
-	if (answer == 1) {
+	if (answer == TRUE) {
 		byteOfFeatures = byteOfFeatures | Occupied;
 	}
 	room->features = byteOfFeatures;
@@ -64,7 +63,7 @@ void zeroOrOne(int* answer)
 	int temp;
 	while (1) {
 		scanf("%d", &temp);
-		if (temp == 0 || temp == 1) {
+		if (temp == TRUE || temp == FALSE) {
 			*answer = temp;
 			return;
 		}
@@ -72,17 +71,17 @@ void zeroOrOne(int* answer)
 	}
 }
 int isRoomHasThisFeature(Room* room, features feature) {//2c
-	return ((room->features&feature) == feature) ? 1 : 0;
+	return ((room->features&feature) == feature) ? TRUE : FALSE;
 }
 void checkIfSpecficRoomsHasFeature(features feature, Room* room, ...) {//2e
 	va_list allRooms;
 	Room* ptrRoom = room;
-	int noRooms = 1;
+	int noRooms = TRUE;
 	va_start(allRooms, room);
 	while (ptrRoom != NULL) {
 
 		if (isRoomHasThisFeature(ptrRoom, feature)) {
-			noRooms = 0;
+			noRooms = FALSE;
 			toStringRoom(ptrRoom);
 		}
 		ptrRoom = va_arg(allRooms, Room*);

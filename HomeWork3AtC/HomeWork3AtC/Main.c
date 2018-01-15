@@ -1,15 +1,16 @@
 #include "Hotel.h"
-
+#
 void  main(int  argc, char*  argv[]) {
 
 	Hotel hotel;
-	if (argc > 1) {
-		loadHotelFromEncryptFile(&hotel, argv[1]);
+	if (argc == 2) {//Q6 if aregv[1] exist or no
+		loadHotelFromEncryptFile(&hotel, argv[1], ENCRYPT_TEXT_FILE_NAME);
 	}
-	initHotel(&hotel);
+	else {
+		initHotel(&hotel);
+	}
 	if (hotel.numberOfRoomsPerFloor > 2) {//2e
-		checkIfSpecficRoomsHasFeature(Balcon, &(hotel.roomsMatrix[0][0]), &hotel.roomsMatrix[0][2], &hotel.roomsMatrix[0][3], NULL);
-
+		checkIfSpecficRoomsHasFeature(Balcon, &(hotel.roomsMatrix[0][0]), &hotel.roomsMatrix[0][1], &hotel.roomsMatrix[0][2], NULL);
 	}
 	int choise = 0;
 	while (choise != -1) {
@@ -27,15 +28,13 @@ void  main(int  argc, char*  argv[]) {
 			checkFreeRoomsByFeature(&hotel);//2d
 			break;
 		}
-
 		}
 	}
-		encryptHotel(&hotel);
-		saveHotelToBinaryFile(&hotel);
-		freeHotel(&hotel);
-		printf("Good Bye!\n");
-		system("pause");
+	encryptHotel(&hotel);
+	freeHotel(&hotel);
+	printf("Good Bye!\n");
+	system("pause");
 
 
 
-	}
+}

@@ -1,70 +1,39 @@
 #include "encryption.h"
-#include "encryption.h" 
-#include <time.h>
-#include <stdio.h>
-void encrypt(void * ptr, int size)//3
-{
-
-	FILE *file = fopen(ENCRYPT_FILE_NAME, "w");
-	if (file == NULL)//check if open file failed
-	{
-		printf("Failed opening the file. Exiting!\n");
-		return;
-	}
 
 
-	srand(time(NULL));
-	int x = rand() % 8;
-
-	fprintf(file, "%d", x);
-	fclose(file);
-
+void encrypt(void * ptr, int size, int x) {//3
 	swapBitsEncryptDecrypt(ptr, size, x);
 	xorAllBytesEncryptDecrypt(ptr, size);
 	bytesRightRoundMoveEncrypt(ptr, size, x);
-
 }
 
-void decrypt(void * ptr, int size, char* fileName) {
-
-	FILE *file = fopen(fileName, "r");
-	if (file == NULL)//check if open file failed
-	{
-		printf("Failed opening the file. Exiting!\n");
-		return;
-	}
-	int x = 0;
-	fscanf(file, "%d", &x);
-	fclose(file);
+void decrypt(void * ptr, int size, int x) {
 	bytesRightRoundMoveDecrypt(ptr, size, x);
 	xorAllBytesEncryptDecrypt(ptr, size);
-	swapBitsEncryptDecrypt(ptr, size, x);//need to fill
-
-
+	swapBitsEncryptDecrypt(ptr, size, x);
 }
 void bytesRightRoundMoveEncrypt(void * ptr, int size, int x) {//3C
 	for (int i = 0; i < size; i++) {
 		unsigned char* temp = (char*)ptr + i;
 		unsigned char originalByte = *((char*)ptr + i);
 		*temp = *temp >> x;
-		originalByte = originalByte << (8 - x);
+		originalByte = originalByte << (NUMBER_OF_BITS_IN_BYTE - x);
 		*temp = *temp | originalByte;//final result
-
 	}
 
 }
 void bytesRightRoundMoveDecrypt(void * ptr, int size, int x) {//4
-	bytesRightRoundMoveEncrypt(ptr, size, 8 - x);
+	bytesRightRoundMoveEncrypt(ptr, size, NUMBER_OF_BITS_IN_BYTE - x);
 
 }
 void xorAllBytesEncryptDecrypt(void * ptr, int size) {//3B
 	for (int i = 0; i < size; i++) {
 		unsigned char* temp = (char*)ptr + i;
-		*temp = *temp ^ 255;
+		*temp = *temp ^ ecryptNum;
 	}
 }
 void swapBitsEncryptDecrypt(void * ptr, int size, int x) {//3a
-	if (x == 7) {
+	if (x == MAX_SIZE_RAND) {
 		x = 0;
 	}
 	for (int i = 0; i < size; i++) {
@@ -91,8 +60,8 @@ void swapBitsEncryptDecrypt(void * ptr, int size, int x) {//3a
 			*temp = *temp << (x);
 		}
 		unsigned char temp2ForOr = originalByte;
-		temp2ForOr = temp2ForOr << (8 - x);//i want to put 0 on all the byte except th bits that lower than x
-		temp2ForOr = temp2ForOr >> (8 - x);
+		temp2ForOr = temp2ForOr << (NUMBER_OF_BITS_IN_BYTE - x);//i want to put 0 on all the byte except th bits that lower than x
+		temp2ForOr = temp2ForOr >> (NUMBER_OF_BITS_IN_BYTE - x);
 		*temp = *temp | temp2ForOr;//final result
 
 	}
@@ -100,15 +69,3 @@ void swapBitsEncryptDecrypt(void * ptr, int size, int x) {//3a
 }
 
 
-void printCharAsBinary(char ch)//func for checks
-{
-	int i;
-	unsigned char temp;
-	for (i = 0; i < 8; i++)
-	{
-		temp = ch << i;
-		temp = temp >> 7;
-		printf("%d", temp);
-	}
-	printf(" \n");
-}
